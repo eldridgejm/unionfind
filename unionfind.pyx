@@ -2,7 +2,6 @@ cimport cython
 from libc.stdlib cimport malloc, free
 
 cdef class UnionFind:
-    """A disjoint set forest data structure."""
     cdef int n_points
     cdef int * parent
     cdef int * rank
@@ -16,6 +15,8 @@ cdef class UnionFind:
         cdef int i
         for i in range(n_points):
             self.parent[i] = i
+
+        self._n_sets = n_points
 
     def __dealloc__(self):
         free(self.parent)
